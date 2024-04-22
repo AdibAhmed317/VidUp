@@ -32,12 +32,6 @@ const RootLayout = () => {
           headerShown: false,
         }}
       />
-      <Stack.Screen
-        name='profile'
-        options={{
-          headerShown: true,
-        }}
-      />
     </Stack>
   );
 };
