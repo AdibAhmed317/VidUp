@@ -5,14 +5,20 @@ import { Redirect, router } from 'expo-router';
 import tw from '../lib/tailwind';
 import { images } from '../constants';
 import CustomButton from '../components/CustomButton';
+import { useGlobalContext } from '../context/GlobalProvider';
 
 export default function App() {
+  const { isLoading, isLoggedIn } = useGlobalContext();
+
+  if (!isLoading && isLoggedIn) {
+    return <Redirect href='/home' />;
+  }
   return (
     <SafeAreaView style={tw`bg-primary h-full`}>
       <ScrollView contentContainerStyle={{ height: '100%' }}>
         <View style={tw`min-h-[680px] w-full justify-center items-center px-4`}>
           <Image
-            source={images.logo}
+            source={images.logoT}
             style={tw`w-[130px] h-[100px]`}
             resizeMode='contain'
           />
