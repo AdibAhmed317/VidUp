@@ -13,7 +13,7 @@ const FormField = ({
 }) => {
   const [showPassword, setShowPassword] = useState(false);
   return (
-    <View style={tw`space-y-2 ${otherStyle}`}>
+    <View style={tw`${otherStyle} my-2`}>
       <Text style={tw`text-base text-gray-100 font-pmedium`}>{title}</Text>
       <View
         style={tw`w-full h-16 border-2 border-blue-900 rounded-2xl px-4 bg-black-100 focus:border-secondary-100 items-center flex-row`}

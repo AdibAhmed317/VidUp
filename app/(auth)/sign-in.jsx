@@ -1,11 +1,12 @@
-import { View, Text, ScrollView, Image } from 'react-native';
+import { View, Text, ScrollView, Image, Alert } from 'react-native';
 import React, { useState } from 'react';
-import { Link } from 'expo-router';
+import { Link, router } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import tw from '../../lib/tailwind';
 import { images } from '../../constants';
 import FormField from '../../components/auth/FormField';
 import CustomButton from '../../components/CustomButton';
+import { signIn } from '../../lib/appwrite';
 
 const SignIn = () => {
   const [form, setForm] = useState({
@@ -15,8 +16,20 @@ const SignIn = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const submitForm = () => {};
-
+  const submitForm = async () => {
+    if (!form.email || !form.password) {
+      Alert.alert('Error', 'Please fill in all data.');
+    }
+    setIsSubmitting(true);
+    try {
+      await signIn(form.email, form.password);
+      router.replace('/home');
+    } catch (error) {
+      Alert.alert('Error', error.message);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   return (
     <SafeAreaView style={tw`bg-primary h-full`}>
       <ScrollView>
@@ -45,7 +58,7 @@ const SignIn = () => {
           <CustomButton
             title='Login'
             handlePress={() => {
-              submitForm;
+              submitForm();
             }}
             isLoading={isSubmitting}
             containerStyles='w-full mt-7'
