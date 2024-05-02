@@ -83,6 +83,13 @@ const SignIn = () => {
                 {' '}
                 Register now.
               </Link>
+              <Link
+                href='/home'
+                style={tw`text-lg font-semibold text-secondary-100`}
+              >
+                {' '}
+                Home.
+              </Link>
             </View>
           </View>
         </ScrollView>

@@ -26,8 +26,6 @@ const Home = () => {
     setRefreshing(false);
   };
 
-  console.log(data);
-
   return (
     <SafeAreaView style={tw`bg-primary h-full`}>
       <FlatList
@@ -35,7 +33,7 @@ const Home = () => {
         keyExtractor={(item) => item.$id}
         renderItem={({ item }) => (
           <>
-            <Text style={tw`text-3xl text-white`}>{item.title}</Text>
+            {/* <Text style={tw`text-3xl text-white`}>{item.title}</Text> */}
             <VideoCard video={item} />
           </>
         )}
