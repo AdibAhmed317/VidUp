@@ -12,12 +12,13 @@ import SearchInput from '../../components/home/SearchInput';
 import Trending from '../../components/home/Trending';
 import EmptyState from '../../components/EmptyState';
 import { useState } from 'react';
-import { getAllPosts } from '../../lib/appwrite';
+import { getAllPosts, getLatestPosts } from '../../lib/appwrite';
 import useAppwrite from '../../hooks/useAppwrite';
 import VideoCard from '../../components/VideoCard';
 
 const Home = () => {
-  const { data, refetch } = useAppwrite(getAllPosts);
+  const { data: posts, refetch } = useAppwrite(getAllPosts);
+  const { data: latestPosts } = useAppwrite(getLatestPosts);
   const [refreshing, setRefreshing] = useState(false);
 
   const onRefresh = async () => {
@@ -29,7 +30,7 @@ const Home = () => {
   return (
     <SafeAreaView style={tw`bg-primary h-full`}>
       <FlatList
-        data={data}
+        data={posts}
         keyExtractor={(item) => item.$id}
         renderItem={({ item }) => (
           <>
@@ -63,7 +64,7 @@ const Home = () => {
               <Text style={tw`text-green-100 text-lg font-pregular mb-3`}>
                 Latest Videos
               </Text>
-              <Trending posts={[{ id: 1 }, { id: 2 }, { id: 3 }] ?? []} />
+              <Trending posts={latestPosts ?? []} />
             </View>
           </View>
         )}

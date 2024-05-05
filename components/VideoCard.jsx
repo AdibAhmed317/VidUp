@@ -1,6 +1,6 @@
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import tw from '../lib/tailwind';
-import { icons } from '../constants';
+import { icons, images } from '../constants';
 import { useState } from 'react';
 
 const VideoCard = ({
@@ -48,10 +48,19 @@ const VideoCard = ({
       {play ? (
         <Text>Playing</Text>
       ) : (
-        <TouchableOpacity style={tw`w-full h-60`}>
+        <TouchableOpacity
+          activeOpacity={0.7}
+          onPress={() => setPlay(true)}
+          style={tw`w-full h-60 rounded-xl mt-3 relative justify-center items-center`}
+        >
           <Image
             style={tw`h-full w-full rounded-xl`}
             source={{ uri: thumbnail }}
+          />
+          <Image
+            style={tw`w-12 h-12 absolute`}
+            source={icons.play}
+            resizeMode='contain'
           />
         </TouchableOpacity>
       )}
