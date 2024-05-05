@@ -1,11 +1,14 @@
-import { View, Text } from 'react-native';
+import { View, Text, SafeAreaView } from 'react-native';
 import React from 'react';
+import { useLocalSearchParams } from 'expo-router';
+import tw from '../../lib/tailwind';
 
 const Search = () => {
+  const { query } = useLocalSearchParams();
   return (
-    <View>
-      <Text>Search</Text>
-    </View>
+    <SafeAreaView style={tw`bg-primary h-full`}>
+      <Text style={tw`text-3xl text-white`}>{query}</Text>
+    </SafeAreaView>
   );
 };
 
