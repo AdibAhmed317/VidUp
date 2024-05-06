@@ -11,9 +11,9 @@ import tw from '../../lib/tailwind';
 import { icons } from '../../constants';
 import { router, usePathname } from 'expo-router';
 
-const SearchInput = () => {
+const SearchInput = ({ initalQuery }) => {
   const pathname = usePathname();
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState(initalQuery || '');
 
   return (
     <View

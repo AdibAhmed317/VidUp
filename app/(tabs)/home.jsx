@@ -34,7 +34,6 @@ const Home = () => {
         keyExtractor={(item) => item.$id}
         renderItem={({ item }) => (
           <>
-            {/* <Text style={tw`text-3xl text-white`}>{item.title}</Text> */}
             <VideoCard video={item} />
           </>
         )}
