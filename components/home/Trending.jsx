@@ -99,7 +99,7 @@ const Trending = ({ posts }) => {
       contentOffset={{ x: 170 }}
       renderItem={({ item }) => (
         <>
-          <Text style={tw`text-gray-100 text-3xl`}>{item.id}</Text>
+          {/* <Text style={tw`text-gray-100 text-3xl`}>{item.id}</Text> */}
           <TrendingItem activeItem={activeItem} item={item} />
         </>
       )}

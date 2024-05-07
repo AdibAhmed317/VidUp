@@ -15,11 +15,13 @@ import { useState } from 'react';
 import { getAllPosts, getLatestPosts } from '../../lib/appwrite';
 import useAppwrite from '../../hooks/useAppwrite';
 import VideoCard from '../../components/VideoCard';
+import { useGlobalContext } from '../../context/GlobalProvider';
 
 const Home = () => {
   const { data: posts, refetch } = useAppwrite(getAllPosts);
   const { data: latestPosts } = useAppwrite(getLatestPosts);
   const [refreshing, setRefreshing] = useState(false);
+  const { user } = useGlobalContext();
 
   const onRefresh = async () => {
     setRefreshing(true);

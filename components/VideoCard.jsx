@@ -18,12 +18,12 @@ const VideoCard = ({
       <View style={tw`flex-row gap-3 items-start`}>
         <View style={tw`justify-center items-center flex-row flex-1`}>
           <View
-            style={tw`w-[46px] h-[46px] rounded-lg border border-secondary-100 justify-center items-center p-0.5`}
+            style={tw`w-[46px] h-[46px] rounded-lg border border-secondary-100 justify-center items-center`}
           >
             <Image
-              style={tw`w-full h-full`}
+              style={tw`w-full h-full rounded-lg`}
               source={{ uri: avatar }}
-              resizeMode='cover'
+              resizeMode='contain'
             />
           </View>
           <View style={tw`justify-center flex-1 ml-3 gap-y-1`}>

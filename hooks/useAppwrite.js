@@ -18,8 +18,8 @@ const useAppwrite = (fn) => {
     }
   };
 
-  const refetch = () => {
-    fetchData();
+  const refetch = async () => {
+    await fetchData();
   };
 
   useEffect(() => {
