@@ -20,17 +20,19 @@ import { useGlobalContext } from '../../context/GlobalProvider';
 import Infobox from '../../components/profile/Infobox';
 
 const Profile = () => {
-  const { user, setUser, setIsLoggedIn } = useGlobalContext();
-  const { data: posts } = useAppwrite(() => getUserPosts(user.$id));
+  const { user, setUser, setIsLogged } = useGlobalContext();
+  const { data: posts } = useAppwrite(() => getUserPosts(user?.$id));
 
-  const handleSignout = () => {
-    signOut();
-    router.push('/sign-in');
+  const handleSignout = async () => {
+    await signOut();
+    setUser(null);
+    setIsLogged(false);
+
+    router.replace('/sign-in');
   };
 
   return (
     <SafeAreaView style={tw`bg-primary h-full`}>
-      <Button title='Sign Out' onPress={handleSignout} />
       <FlatList
         data={posts}
         keyExtractor={(item) => item.$id}
@@ -63,7 +65,6 @@ const Profile = () => {
 
             <Infobox
               title={user?.username}
-              subtitle='Views'
               containerStyle='mt-5'
               titleStyle='text-lg'
             />
@@ -75,12 +76,7 @@ const Profile = () => {
                 containerStyle='mr-10'
                 titleStyle='text-xl'
               />
-              <Infobox
-                title='100'
-                subtitle='Followers'
-                containerStyle='mt-5'
-                titleStyle='text-xl'
-              />
+              <Infobox title='100' subtitle='Followers' titleStyle='text-xl' />
             </View>
           </View>
         )}

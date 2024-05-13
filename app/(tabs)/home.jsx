@@ -47,10 +47,10 @@ const Home = () => {
                   Hello There
                 </Text>
                 <Text style={tw`text-2xl font-psemibold text-white`}>
-                  Adib Ahmed
+                  {user?.username}
                 </Text>
               </View>
-              <View style={tw``}>
+              <View>
                 <Image
                   source={images.logoT}
                   style={tw`w-14 h-14`}

@@ -13,6 +13,7 @@ const VideoCard = ({
   },
 }) => {
   const [play, setPlay] = useState(false);
+
   return (
     <View style={tw`flex-col items-center px-4 mb-14`}>
       <View style={tw`flex-row gap-3 items-start`}>
