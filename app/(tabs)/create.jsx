@@ -10,6 +10,7 @@ import {
 
 import tw from '../../lib/tailwind';
 import FormField from '../../components/auth/FormField';
+import CustomButton from '../../components/CustomButton';
 import { ResizeMode, Video } from 'expo-av';
 import { icons } from '../../constants';
 
@@ -21,6 +22,9 @@ const Create = () => {
     thumbnail: null,
     prompt: '',
   });
+
+  const submit = () => {};
+
   return (
     <SafeAreaView style={tw`bg-primary h-full`}>
       <ScrollView style={tw`px-4 my-6`}>
@@ -55,7 +59,7 @@ const Create = () => {
                 style={tw`w-full h-40 px-4 bg-black-100 rounded-2xl justify-center items-center`}
               >
                 <View
-                  style={tw`w-14 h-14 border-dashed border-secondary-100 justify-center items-center`}
+                  style={tw`w-20 h-14 border-dashed border-2 border-secondary-100 justify-center items-center`}
                 >
                   <Image
                     style={tw`w-1/2 h-1/2`}
@@ -67,6 +71,49 @@ const Create = () => {
             )}
           </TouchableOpacity>
         </View>
+        <View style={tw`my-7`}>
+          <Text style={tw`text-base text-gray-100 font-pmedium`}>
+            Thumbnail Upload
+          </Text>
+
+          <TouchableOpacity>
+            {form.thumbnail ? (
+              <Image
+                style={tw`w-full h-64 rounded-2xl`}
+                resizeMode='cover'
+                source={{ uri: form.thumbnail.uri }}
+              />
+            ) : (
+              <View
+                style={tw`w-full h-16 px-4 bg-black-100 rounded-2xl justify-center items-center border-2 border-black-200 flex-row`}
+              >
+                <Image
+                  style={tw`w-5 h-5`}
+                  source={icons.upload}
+                  resizeMode='contain'
+                />
+                <Text style={tw`text-sm text-gray-100 font-pmedium mx-2`}>
+                  Chose a file
+                </Text>
+              </View>
+            )}
+          </TouchableOpacity>
+        </View>
+
+        <FormField
+          title='AI Prompt'
+          value={form.title}
+          placeholder='Give your video a title.'
+          handleChangeText={(e) => setForm({ ...form, title: e })}
+          otherStyle='mt-7'
+        />
+
+        <CustomButton
+          title='Submit & Publish'
+          handlePress={submit}
+          containerStyles='mt-7'
+          isLoading={uploading}
+        />
       </ScrollView>
     </SafeAreaView>
   );
